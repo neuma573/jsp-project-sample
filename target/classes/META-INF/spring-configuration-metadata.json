@@ -1,0 +1,72 @@
+{
+  "groups": [
+    {
+      "name": "app.settings",
+      "type": "com.lguplus.medialog.project.config.consts.AppSettings",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
+    },
+    {
+      "name": "app.settings.log",
+      "type": "com.lguplus.medialog.project.config.consts.AppSettings$Log",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
+    },
+    {
+      "name": "app.settings.tomcat.ajp",
+      "type": "com.lguplus.medialog.project.config.TomcatConfig$TomcatAjpSettings",
+      "sourceType": "com.lguplus.medialog.project.config.TomcatConfig$TomcatAjpSettings"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.settings.log.svc-root",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings$Log"
+    },
+    {
+      "name": "app.settings.log.tlo-mdc-key",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings$Log"
+    },
+    {
+      "name": "app.settings.log.tlo-prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings$Log"
+    },
+    {
+      "name": "app.settings.log.tlo-root",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings$Log"
+    },
+    {
+      "name": "app.settings.sms-authnum-msg",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
+    },
+    {
+      "name": "app.settings.sms-callback",
+      "type": "java.lang.String",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
+    },
+    {
+      "name": "app.settings.tomcat.ajp.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.lguplus.medialog.project.config.TomcatConfig$TomcatAjpSettings"
+    },
+    {
+      "name": "app.settings.tomcat.ajp.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.lguplus.medialog.project.config.TomcatConfig$TomcatAjpSettings"
+    },
+    {
+      "name": "app.settings.tomcat.ajp.remoteauthentication",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.lguplus.medialog.project.config.TomcatConfig$TomcatAjpSettings"
+    },
+    {
+      "name": "app.settings.xss-excludes",
+      "type": "java.lang.String[]",
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
+    }
+  ],
+  "hints": []
+}
