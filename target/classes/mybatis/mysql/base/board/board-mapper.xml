@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lguplus.medialog.project.board.BoardDao">
+
+	<select id="boardList"
+		parameterType="com.lguplus.medialog.project.board.BoardSearch"
+		resultType="com.lguplus.medialog.project.board.Board">
+		/* authuser-mapper.xml(getByUsername) */
+		SELECT
+			BOARD_ID, BOARD_USER, BOARD_LIKES, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
+			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
+		FROM
+			BOARD
+		WHERE
+		BOARD_ID = #{boardId}
+	</select>
+
+	<insert id="uploadBoard"
+		parameterType="com.lguplus.medialog.project.board.Board">
+		/* */
+		INSERT INTO BOARD (
+			BOARD_ID,
+			BOARD_USER,
+			BOARD_NM,
+			BOARD_CONTENT,
+			BOARD_REG_DT,
+			BOARD_MOD_DT,
+			BOARD_DEL_DT,
+			BOARD_VIEW,
+			BOARD_COMMENT,
+			BOARD_LIKES
+			) VALUES (
+				#{boardId}, #{boardUser}, #{boardName}, #{boardCont}, #{boardRegDt},
+				NULL, NULL, '0', '0', '0'
+		    		 )
+	</insert>
+
+	<!-- <update id="increaseFailCount" parameterType="string"> /* authuser-mapper.xml(increaseFailCount) 
+		*/ UPDATE USER SET LOGIN_FAIL_CNT = IFNULL(LOGIN_FAIL_CNT, 0) + 1 WHERE USER_ID 
+		= #{userId} </update> / -->
+
+</mapper>

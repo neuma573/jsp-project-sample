@@ -119,6 +119,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+		<!-- JSTL -->
+        <dependency>
+               <groupId>jstl</groupId>
+               <artifactId>jstl</artifactId>
+               <version>1.2</version>
+          </dependency>
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>

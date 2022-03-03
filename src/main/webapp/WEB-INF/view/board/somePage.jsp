@@ -10,13 +10,13 @@
 <body>
   
   <h1>게시판 글 작성하기</h1>
-  <form action="write.jsp" method="post">
+  <form action="page/write" method="post">
     <div class="form-group">
       <table>
         <tr><td>
       <label for="title">제목</label></td>
     
-      <td><input type="text" class="form-control" id="title"
+      <td><input type="text" id="title"
        placeholder="제목 입력(4-100)" name="title"
        maxlength="100" required="required"
        pattern=".{4,100}"></td>
@@ -26,12 +26,12 @@
     <div class="form-group">
    <label for="content">내용</label></td>
 <td>
-   <textarea class="form-control" rows="5" id="content"
-    name="content" placeholder="내용 작성"></textarea>
+   <textarea rows="5" id="content"
+    name="content" placeholder="내용 작성"  required="required"></textarea>
  </div></td></tr>
 </table>
- <input type="file" name="SelectFile" />
-<button type="submit" class="btn btn-default">등록</button>
+ <input type="file" name="file" value="file" name="SelectFile" />
+<button type="submit">등록</button>
 <a href="javascript:history.back()">돌아가기</button>
   </form>
 
