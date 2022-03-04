@@ -10,39 +10,31 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class BoardService {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	long start = System.currentTimeMillis();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.Sec");
-	LocalDateTime now = LocalDateTime.now();
 	@Autowired
 	private BoardDao dao;
-	public int boardCount(BoardSearch boardSearch) {
-
-		return dao.boardCount(boardSearch);
-
-	}
-
-
-
-	public List<Board> boardList(BoardSearch boardSearch){
-		long finish = System.currentTimeMillis();
-		double elapsedTime = (finish - start)/1000d;
-		logger.debug("build new menu tree... ({}) elapsed={}", boardSearch, elapsedTime);
-		return dao.boardList(boardSearch);
-
-	}
 	
-	public void uploadBoard(Board board) {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	long start = System.currentTimeMillis();
 
+
+	public List<Board> selectBoardList()  {
 		
-		board.setBoardRegDt(now.format(formatter));
+		return dao.selectBoardList();
+	}
+	public void uploadBoard(Board board) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.Sec");
+		LocalDateTime now = LocalDateTime.now();
 		dao.uploadBoard(board);
 	}
 
-
-
-
+	public Board getBoardDetail(int boardId) throws Exception{
+		return dao.boardDetail(boardId);
+	}
+	
 
 }

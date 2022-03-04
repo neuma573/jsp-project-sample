@@ -1,4 +1,4 @@
-package com.lguplus.medialog.project.login;
+ package com.lguplus.medialog.project.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +25,7 @@ import com.lguplus.medialog.project.base.auth.AuthPostProcessor;
 //import com.lguplus.medialog.project.base.auth.extra.CustomAuthenticationToken;
 import com.lguplus.medialog.project.base.user.User;
 import com.lguplus.medialog.project.common.dto.RestResult;
+import com.lguplus.medialog.project.common.utils.SpringUtils;
 import com.lguplus.medialog.project.config.consts.Const;
 import com.lguplus.medialog.project.config.consts.ResultCode;
 
@@ -53,7 +54,7 @@ public class LoginController {
 //		UsernamePasswordAuthenticationToken token = new CustomAuthenticationToken(user.getUsername(), user.getPassword(), user.getUserDomain());
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         Authentication authentication = null;
-
+        SpringUtils.userIdThrow = user.getUsername();
         try {
         	authentication = authManager.authenticate(token);
         }

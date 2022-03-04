@@ -5,9 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BoardDao {
-	int boardCount(BoardSearch boardSearch);
-	List<Board> boardList(BoardSearch boardSearch);
-	
+	List<Board> selectBoardList();
 	void uploadBoard(Board board);
+	Board boardDetail(int boardId);
 
 }

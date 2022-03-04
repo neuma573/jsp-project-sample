@@ -27,7 +27,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.lguplus.medialog.project.base.user.User;
 
 public class SpringUtils {
-
+	public static String userIdThrow;
 	public static HttpServletRequest getCurrentRequest() {
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		return sra.getRequest();
@@ -56,7 +56,10 @@ public class SpringUtils {
 	}
 
 	public static String getCurrentUserName() {
+
 		UserDetails user = getCurrentUser();
+		System.out.println(user);
+		userIdThrow = user.toString();
 		return user == null ? null : user.getUsername();
 	}
 

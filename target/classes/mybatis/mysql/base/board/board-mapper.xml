@@ -3,24 +3,25 @@
 
 <mapper namespace="com.lguplus.medialog.project.board.BoardDao">
 
-	<select id="boardList"
-		parameterType="com.lguplus.medialog.project.board.BoardSearch"
+	<select id="selectBoardList"
 		resultType="com.lguplus.medialog.project.board.Board">
-		/* authuser-mapper.xml(getByUsername) */
+		/* board-mapper.xml(selectBoardList) */
+		
+				<![CDATA[
 		SELECT
-			BOARD_ID, BOARD_USER, BOARD_LIKES, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
+			BOARD_ID, BOARD_USER, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
 			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
 		FROM
 			BOARD
-		WHERE
-		BOARD_ID = #{boardId}
+		ORDER BY
+			BOARD_ID DESC
+				]]>
 	</select>
 
 	<insert id="uploadBoard"
-		parameterType="com.lguplus.medialog.project.board.Board">
-		/* */
+		parameterType="com.lguplus.medialog.project.board.Board" useGeneratedKeys="true" keyProperty="BOARD_ID">
+		/* board-mapper.xml(uploadBoard) */
 		INSERT INTO BOARD (
-			BOARD_ID,
 			BOARD_USER,
 			BOARD_NM,
 			BOARD_CONTENT,
@@ -30,11 +31,28 @@
 			BOARD_VIEW,
 			BOARD_COMMENT,
 			BOARD_LIKES
-			) VALUES (
-				#{boardId}, #{boardUser}, #{boardName}, #{boardCont}, #{boardRegDt},
+			) 
+		VALUES (
+				#{boardUser}, #{boardNm}, #{boardContent}, #{boardRegDt},
 				NULL, NULL, '0', '0', '0'
-		    		 )
+		    )
 	</insert>
+
+		<select id="getBoardDetail"
+		parameterType="Integer" resultType="com.lguplus.medialog.project.board.Board">
+		/* board-mapper.xml(getBoardDetail) */
+		
+				<![CDATA[
+		SELECT
+			BOARD_ID, BOARD_USER, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
+			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
+		FROM
+			BOARD
+		WHERE
+			${BoardId}
+				]]>
+	</select>
+
 
 	<!-- <update id="increaseFailCount" parameterType="string"> /* authuser-mapper.xml(increaseFailCount) 
 		*/ UPDATE USER SET LOGIN_FAIL_CNT = IFNULL(LOGIN_FAIL_CNT, 0) + 1 WHERE USER_ID 

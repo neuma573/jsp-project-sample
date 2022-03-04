@@ -10,14 +10,14 @@
 <body>
   
   <h1>게시판 글 작성하기</h1>
-  <form action="page/write" method="post">
+  <form action="/page/board/pageWrite" method="post">
     <div class="form-group">
       <table>
         <tr><td>
       <label for="title">제목</label></td>
     
-      <td><input type="text" id="title"
-       placeholder="제목 입력(4-100)" name="title"
+      <td><input type="text" id="boardNm"
+       placeholder="제목 입력(4-100)" name="boardNm"
        maxlength="100" required="required"
        pattern=".{4,100}"></td>
       </tr>
@@ -26,8 +26,8 @@
     <div class="form-group">
    <label for="content">내용</label></td>
 <td>
-   <textarea rows="5" id="content"
-    name="content" placeholder="내용 작성"  required="required"></textarea>
+   <textarea rows="5" id="boardContent"
+    name="boardContent" placeholder="내용 작성"  required="required"></textarea>
  </div></td></tr>
 </table>
  <input type="file" name="file" value="file" name="SelectFile" />

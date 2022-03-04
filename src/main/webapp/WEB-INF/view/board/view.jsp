@@ -12,31 +12,31 @@
         <body>
 
             <h1>게시판 게시글 페이지</h1>
-
+            <c:forEach items="${board}" var="li">
             <table style="width: 600px;" border="1">
                 <tr>
                     <td>게시글ID</td>
-                    <td style="width: 80%"></td>
+                    <td style="width: 80%">${li.boardId}</td>
                 </tr>
                 <tr>
                     <td>작성일</td>
-                    <td></td>
+                    <td>${li.boardRegDt}</td>
                 </tr>
                 <tr>
                     <td>작성자</td>
-                    <td></td>
+                    <td>${li.boardUser}</td>
                 </tr>
                 <tr>
                     <td>추천수</td>
-                    <td></td>
+                    <td>${li.boardLikes}</td>
                 </tr>
                 <tr>
                     <td>조회수</td>
-                    <td></td>
+                    <td>${li.boardView}</td>
                 </tr>
                 <tr>
                     <td >내용</td>
-                    <td ></td>
+                    <td >${li.boardNm}</td>
                 </tr>
                 <tr>
                     <td>첨부파일</td>
