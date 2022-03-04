@@ -37,20 +37,9 @@ public class BoardController {
 	  }
     //게시판 게시글 디테일
 	@GetMapping("view")
-	public String openBoardDetail(@RequestParam(value = "boardId", required = false) Integer boardId, Model model) throws Exception {
-		if (boardId == null) {
-			// TODO => 올바르지 않은 접근이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
-			System.out.println("널값");
-			return "redirect:/page/board";
-		}
-
-		Board board = svc.getBoardDetail(boardId);
-		if (board == null || board.getBoardDelDt()==null) {
-			// TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
-			return "redirect:/page/board";
-		}
-		model.addAttribute("board", board);
-
+	public String openBoardDetail(@RequestParam int id, Model model) throws Exception {
+		Board board = svc.getBoardDetail(id);
+		model.addAttribute("board",board);
 		return "board/view.empty";
 	}
 

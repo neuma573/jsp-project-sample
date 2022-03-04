@@ -19,7 +19,7 @@
 	</select>
 
 	<insert id="uploadBoard"
-		parameterType="com.lguplus.medialog.project.board.Board" useGeneratedKeys="true" keyProperty="BOARD_ID">
+		parameterType="com.lguplus.medialog.project.board.Board" useGeneratedKeys="true" keyProperty="boardId">
 		/* board-mapper.xml(uploadBoard) */
 		INSERT INTO BOARD (
 			BOARD_USER,
@@ -39,18 +39,16 @@
 	</insert>
 
 		<select id="getBoardDetail"
-		parameterType="Integer" resultType="com.lguplus.medialog.project.board.Board">
+		parameterType="int" resultType="com.lguplus.medialog.project.board.Board">
 		/* board-mapper.xml(getBoardDetail) */
-		
-				<![CDATA[
 		SELECT
 			BOARD_ID, BOARD_USER, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
 			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
 		FROM
 			BOARD
 		WHERE
-			${BoardId}
-				]]>
+			BOARD_ID = #{id}
+
 	</select>
 
 

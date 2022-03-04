@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BoardDao {
 	List<Board> selectBoardList();
+	
 	void uploadBoard(Board board);
-	Board boardDetail(int boardId);
+	
+	Board getBoardDetail(int id);
 
 }

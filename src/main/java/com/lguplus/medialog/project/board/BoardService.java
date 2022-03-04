@@ -32,8 +32,8 @@ public class BoardService {
 		dao.uploadBoard(board);
 	}
 
-	public Board getBoardDetail(int boardId) throws Exception{
-		return dao.boardDetail(boardId);
+	public Board getBoardDetail(int id) throws Exception{
+		return dao.getBoardDetail(id);
 	}
 	
 

@@ -12,11 +12,11 @@
         <body>
 
             <h1>게시판 게시글 페이지</h1>
-            <c:forEach items="${board}" var="li">
+            <c:out items="${board}" var="li">
             <table style="width: 600px;" border="1">
                 <tr>
                     <td>게시글ID</td>
-                    <td style="width: 80%">${li.boardId}</td>
+                    <td>${li.boardId}</td>
                 </tr>
                 <tr>
                     <td>작성일</td>
@@ -35,8 +35,12 @@
                     <td>${li.boardView}</td>
                 </tr>
                 <tr>
-                    <td >내용</td>
+                    <td >제목</td>
                     <td >${li.boardNm}</td>
+                </tr>
+                <tr>
+                    <td >내용</td>
+                    <td >${li.boardContent}</td>
                 </tr>
                 <tr>
                     <td>첨부파일</td>
@@ -46,26 +50,10 @@
 
 
             </table>
-
+            </c:out>
             <hr>
 
-            <table border="1">
-                <tr>
-                    <td>작성일</td>
-                    <td></td>
-                    <td>작성자</td>
-                    <td></td>
-                    <td>추천수</td>
-                    <td></td>
-                </tr>
 
-                <tr>
-                    <td>내용</td>
-                    <td colspan="5">ddddddd</td>
-                </tr>
-
-
-            </table>
             <form action="write.jsp" method="post">
                 <div class="form-group">
                   <table>
