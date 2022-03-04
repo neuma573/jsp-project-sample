@@ -4,7 +4,7 @@ import lombok.*;
 
 @Data
 public class Board {
-	private String boardId; // [PK] BOARD_ID
+	private int boardId; // [PK] BOARD_ID
 	private String boardUser; // BOARD_USER
 	private String boardNm; // BOARD_NM
 	private String boardContent; // BOARD_CONTENT

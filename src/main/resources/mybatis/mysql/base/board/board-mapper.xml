@@ -19,7 +19,7 @@
 	</select>
 
 	<insert id="uploadBoard"
-		parameterType="com.lguplus.medialog.project.board.Board" useGeneratedKeys="true" keyProperty="BOARD_ID">
+		parameterType="com.lguplus.medialog.project.board.Board" keyProperty="BOARD_ID">
 		/* board-mapper.xml(uploadBoard) */
 		INSERT INTO BOARD (
 			BOARD_USER,
