@@ -12,35 +12,35 @@
         <body>
 
             <h1>게시판 게시글 페이지</h1>
-            <c:out items="${board}" var="li">
+
             <table style="width: 600px;" border="1">
                 <tr>
                     <td>게시글ID</td>
-                    <td>${li.boardId}</td>
+                    <td><c:out value="${board.boardId}" /></td>
                 </tr>
                 <tr>
                     <td>작성일</td>
-                    <td>${li.boardRegDt}</td>
+                    <td><c:out value="${board.boardRegDt}" /></td>
                 </tr>
                 <tr>
                     <td>작성자</td>
-                    <td>${li.boardUser}</td>
+                    <td><c:out value="${board.boardUser}" /></td>
                 </tr>
                 <tr>
                     <td>추천수</td>
-                    <td>${li.boardLikes}</td>
+                    <td><c:out value="${board.boardLikes}" /></td>
                 </tr>
                 <tr>
                     <td>조회수</td>
-                    <td>${li.boardView}</td>
-                </tr>
-                <tr>
+                    <td><c:out value="${board.boardView}" /></td>
+               <tr>
                     <td >제목</td>
-                    <td >${li.boardNm}</td>
-                </tr>
+                    <td ><c:out value="${board.boardNm}" /></td>
+                    </tr>
+    
                 <tr>
                     <td >내용</td>
-                    <td >${li.boardContent}</td>
+                    <td ><c:out value="${board.boardContent}" /></td>
                 </tr>
                 <tr>
                     <td>첨부파일</td>
@@ -50,7 +50,7 @@
 
 
             </table>
-            </c:out>
+
             <hr>
 
 

@@ -42,7 +42,10 @@
             <c:forEach items="${list}" var="li">
               <tr align="center" height="30">
                 <td>${li.boardId}</td>
-                <td>${li.boardNm}</td>
+                <c:url value="/page/board/view" var="url">
+                  <c:param name="id" value="${li.boardId}" />
+                  </c:url>
+                <td><a href="${url}">${li.boardNm}</a></td>
                 <td>${li.boardUser}</td>
                 <td>${li.boardRegDt}</td>
                 <td>${li.boardView}</td>
