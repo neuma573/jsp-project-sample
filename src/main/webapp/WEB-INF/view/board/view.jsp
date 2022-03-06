@@ -50,7 +50,9 @@
 
 
             </table>
-
+            <button id="modify" onclick="location.href='boardModify?id=${board.boardId}'">수정</button>
+            <button id="delete" onclick="location.href='boardDelete?id=${board.boardId}'">삭제</button> 
+            
             <hr>
 
 

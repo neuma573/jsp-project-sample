@@ -35,6 +35,11 @@ public class BoardService {
 	public Board getBoardDetail(int id) throws Exception{
 		return dao.getBoardDetail(id);
 	}
+    public void boardModify(int id) throws Exception {
+        dao.boardModify(id);
+ }
+
+
 	
 
 }

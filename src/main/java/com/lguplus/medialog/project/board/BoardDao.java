@@ -10,5 +10,9 @@ public interface BoardDao {
 	void uploadBoard(Board board);
 	
 	Board getBoardDetail(int id);
+	
+	public void boardModify(int num) throws Exception;
+	
+
 
 }

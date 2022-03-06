@@ -59,6 +59,17 @@ public class BoardController {
 		svc.uploadBoard(board);
 		return "redirect:/page/board";
 	}
+	
+	//게시판 수정
+    @RequestMapping(value="boardModify")
+    public String boardModify(@RequestParam("id") int id, Model model) throws Exception {
+ 
+        Board board = svc.getBoardDetail(id);
+        model.addAttribute("Board", board);    
+        return "board/boardModify.empty";
+    }
+
+
 
 
 
