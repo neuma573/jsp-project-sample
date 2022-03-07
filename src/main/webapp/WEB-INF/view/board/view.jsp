@@ -11,6 +11,7 @@
 
         <body>
 
+
             <h1>게시판 게시글 페이지</h1>
 
             <table style="width: 600px;" border="1">
@@ -25,10 +26,6 @@
                 <tr>
                     <td>작성자</td>
                     <td><c:out value="${board.boardUser}" /></td>
-                </tr>
-                <tr>
-                    <td>추천수</td>
-                    <td><c:out value="${board.boardLikes}" /></td>
                 </tr>
                 <tr>
                     <td>조회수</td>
@@ -52,38 +49,37 @@
             </table>
             <button id="modify" onclick="location.href='boardModify?id=${board.boardId}'">수정</button>
             <button id="delete" onclick="location.href='boardDelete?id=${board.boardId}'">삭제</button> 
-            <button id="delete" onclick="location.href='boardDelete?id=${board.boardId}'">추천</button> 
+            
             <a href="javascript:history.back()">돌아가기</button></a>
             <hr>
 
 
-            <table width="800">
-                <tr>
-                  <th width="100">번호</th>
-                  <th width="100">작성자</th>
-                  <th width="100">작성일</th>
-                  <th width="300">댓글내용</th>
-                  <th width="100">추천수</th>
-                </tr>
-                <c:forEach items="${list}" var="li" varStatus="status">
-                    <tr align="center" height="30">
-                        <td>${status.count}</td>    
-                        <td>${li.commentUser}</td>
-                        <td>${li.commentRegDt}</td>
-                        <td>${li.commentContent}</td>
-                        <td>${li.commentLikes}</td>
-                        <td><button id="delete" onclick="location.href='commentDelete?id=${li.commentId}&bid=${board.boardId}'">삭제</button></td>
-                        <td>수정</td>
-                      <tr>
-                    </c:forEach> <!-- Paging 처리 -->
-                    <tr>
-                      <td colspan="7" align="center" height="40">
-                        <!-- <%-- ${pageCode} --%> -->
-                      </td>
-                    </tr>
-                  </table> 
 
-            </table>
+                    
+                    <c:forEach var="li" items="${list}" varStatus="status">
+                        <div style="border: 1px solid gray; width: 600px; padding: 5px; margin-top: 5px;
+                              margin-left: <c:out value="${20*li.commentDepth}"/>px; display: inline-block">   
+                            <c:out value="${li.commentUser}"/> <c:out value="${li.commentRegDt}"/>
+                            <a id="delete" href='commentDelete?id=${li.commentId}&bid=${board.boardId}'>삭제</a>
+                            <a href="#">수정</a>
+                            <a href="#">답글</a>
+                            <div id="replyDialog" style="width: 99%; display:none">
+                                <form name="form3" action="board6ReplySave" method="post">
+                                    <input type="hidden" name="boardId" value="<c:out value="${board.boardId}"/>">
+                                    <input type="hidden" name="commentId">
+                                    <input type="hidden" name="commentParent">
+                                    <textarea name="rememo" rows="3" cols="60" maxlength="500"></textarea>
+                                    <a href="#" onclick="fn_replyReplySave()">저장</a>
+                                    <a href="#" onclick="fn_replyReplyCancel()">취소</a>
+                                </form>
+                            </div>
+                            
+                            <br/>
+                            <div id="reply<c:out value="${li.commentId}"/>"><c:out value="${li.commentContent}"/></div>
+                        </div><br/>
+                    </c:forEach>
+
+      
 
 
 
@@ -95,9 +91,7 @@
                     <tr aria-placeholder="3">댓글입력
                   </tr>
                 </div>
-                <tr><td>
-                <div class="form-group">
-               <label for="content">내용</label></td>
+                <tr>
             <td>
                <textarea class="form-control" rows="5" id="commentContent"
                 name="commentContent" placeholder="내용 작성" required="required"></textarea>
@@ -115,6 +109,51 @@
 
 
             <script>
+
+function hideDiv(id){
+    var div = document.getElementById(id);
+    div.style.display = "none";
+    document.body.appendChild(div);
+}
+
+function fn_replyReply(reno){
+    var form = document.form3;
+    var reply = document.getElementById("reply"+reno);
+    var replyDia = document.getElementById("replyDialog");
+    replyDia.style.display = "";
+   
+    if (updateReno) {
+        fn_replyUpdateCancel();
+    }
+   
+    form.rememo.value = "";
+    form.reparent.value=reno;
+    reply.appendChild(replyDia);
+    form.rewriter.focus();
+}
+function fn_replyReplyCancel(){
+    hideDiv("replyDialog");
+}
+
+function fn_replyReplySave(){
+    var form = document.form3;
+   
+    if (form.rewriter.value=="") {
+        alert("작성자를 입력해주세요.");
+        form.rewriter.focus();
+        return;
+    }
+    if (form.rememo.value=="") {
+        alert("글 내용을 입력해주세요.");
+        form.rememo.focus();
+        return;
+    }
+   
+    form.action="board6ReplySave";
+    form.submit();   
+}
+
+출처: https://forest71.tistory.com/54?category=562155 [SW 개발이 좋은 사람]
             </script>
         </body>
 

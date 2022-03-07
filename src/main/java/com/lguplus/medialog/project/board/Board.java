@@ -15,7 +15,6 @@ public class Board {
 	private String boardModDt; // BOARD_MOD_DT
 	private int boardView; // BOARD_VIEW
 	private int boardComment; // BOARD_COMMENT
-	private int boardLikes; // BOARD_LIKES
 
 
 

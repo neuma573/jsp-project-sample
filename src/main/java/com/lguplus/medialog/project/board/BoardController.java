@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +103,24 @@ public class BoardController {
         svc.subCommentCnt(bid);
         return "redirect:/page/board";
     }
+    public void insertBoardReply(BoardComment comment) {
+        if ("".equals(comment.getCommentId())) {
+            if (comment.getCommentParent() != null) {
+                BoardComment replyInfo = sqlSession.selectOne("selectBoard6ReplyParent", comment.getCommentParent());
+                comment.setCommentDepth(replyInfo.getCommentDepth());
+                comment.setCommentOrder(replyInfo.getCommentOrder() + 1);
+                sqlSession.selectOne("updateBoard6ReplyOrder", replyInfo);
+            } else {
+                Integer CommentOrder = sqlSession.selectOne("selectBoard6ReplyMaxOrder", comment.getCommentUpper());
+                comment.setCommentOrder(CommentOrder);
+            }
+           
+            sqlSession.insert("insertBoard6Reply", comment);
+        } else {
+            sqlSession.insert("updateBoard6Reply", comment);
+        }
+    }
+
 	
     
 
