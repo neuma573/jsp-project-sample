@@ -27,17 +27,44 @@ public class BoardService {
 		return dao.selectBoardList();
 	}
 	public void uploadBoard(Board board) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.Sec");
-		LocalDateTime now = LocalDateTime.now();
 		dao.uploadBoard(board);
 	}
 
 	public Board getBoardDetail(int id) throws Exception{
 		return dao.getBoardDetail(id);
 	}
-    public void boardModify(int id) throws Exception {
-        dao.boardModify(id);
- }
+	
+    public void boardModifyRegist(Board board) throws Exception {
+        dao.boardModifyRegist(board);
+    }
+    // 게시글 삭제
+    public void boardDelete(int id) throws Exception {
+        dao.boardDelete(id);
+    }
+	// 조회수 올리기
+	public int boardViewUpdate(int id) throws Exception {
+		return dao.boardViewUpdate(id);
+	}
+	public void commentPost(BoardComment comment) {
+		dao.commentPost(comment);
+	}
+	
+	public List<BoardComment> openCommentList(int id){
+		return dao.openCommentList(id);
+	}
+	public void addCommentCnt(int id) {
+		dao.addCommentCnt(id);
+	}
+	
+	public void subCommentCnt(int id) {
+		dao.subCommentCnt(id);
+	}
+	public void commentDelete(int id) {
+		dao.commentDelete(id);
+	}
+
+
+
 
 
 	

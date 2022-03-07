@@ -3,6 +3,7 @@
 
 <mapper namespace="com.lguplus.medialog.project.board.BoardDao">
 
+	<!-- 리스트 출력 -->
 	<select id="selectBoardList"
 		resultType="com.lguplus.medialog.project.board.Board">
 		/* board-mapper.xml(selectBoardList) */
@@ -18,6 +19,7 @@
 				]]>
 	</select>
 
+	<!-- 글작성 -->
 	<insert id="uploadBoard"
 		parameterType="com.lguplus.medialog.project.board.Board" useGeneratedKeys="true" keyProperty="boardId">
 		/* board-mapper.xml(uploadBoard) */
@@ -33,23 +35,132 @@
 			BOARD_LIKES
 			) 
 		VALUES (
-				#{boardUser}, #{boardNm}, #{boardContent}, #{boardRegDt},
+				#{boardUser}, #{boardNm}, #{boardContent}, now(),
 				NULL, NULL, '0', '0', '0'
 		    )
 	</insert>
 
-		<select id="getBoardDetail"
+	<!-- 상세 -->
+	<select id="getBoardDetail"
 		parameterType="int" resultType="com.lguplus.medialog.project.board.Board">
 		/* board-mapper.xml(getBoardDetail) */
 		SELECT
-			BOARD_ID, BOARD_USER, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
-			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
+			BOARD_ID,
+			BOARD_USER, 
+			BOARD_NM, 
+			BOARD_CONTENT, 
+			BOARD_REG_DT,
+			BOARD_MOD_DT, 
+			BOARD_DEL_DT, 
+			BOARD_VIEW, 
+			BOARD_COMMENT, 
+			BOARD_LIKES
 		FROM
 			BOARD
 		WHERE
 			BOARD_ID = #{id}
-
 	</select>
+
+	<!-- 수정 -->
+	<update id="boardModifyRegist"
+		parameterType="com.lguplus.medialog.project.board.Board">
+		update board
+			SET BOARD_NM = #{boardNm},
+				BOARD_CONTENT  = #{boardContent},
+				BOARD_MOD_DT = now() 
+			WHERE BOARD_ID = #{boardId};		
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="boardDelete" parameterType="int">
+        DELETE FROM board
+        WHERE BOARD_ID = #{id}
+    </delete>
+
+	<!-- 조회수 -->
+	<update id="boardViewUpdate">
+		update board
+			set BOARD_VIEW = BOARD_VIEW + 1
+			where BOARD_ID = #{id}
+	</update>
+
+	<!-- 글작성 -->
+	<insert id="commentPost"
+		parameterType="com.lguplus.medialog.project.board.BoardComment">
+		/* board-mapper.xml(uploadBoard) */
+		INSERT INTO COMMENT (
+			COMMENT_UPPER,
+			COMMENT_PARENT,
+			COMMENT_DEPTH,
+			COMMENT_ORDER,
+			COMMENT_USER,
+			COMMENT_CONTENT,
+			COMMENT_REG_DT,
+			COMMENT_MOD_DT,
+			COMMENT_DEL_DT,
+			COMMENT_LIKES
+			) 
+		VALUES (
+				#{commentUpper}, 0, 0, 0, #{commentUser}, #{commentContent}, now(), 
+				NULL, NULL, '0'
+		    )
+	</insert>
+	
+	<!-- 댓글 리스트 출력 -->
+	<select id="openCommentList"
+		resultType="com.lguplus.medialog.project.board.BoardComment">
+		/* board-mapper.xml(openCommentList) */
+		
+				<![CDATA[
+		SELECT
+			COMMENT_ID,
+			COMMENT_UPPER,
+			COMMENT_PARENT,
+			COMMENT_DEPTH,
+			COMMENT_ORDER,
+			COMMENT_USER,
+			COMMENT_CONTENT,
+			COMMENT_REG_DT,
+			COMMENT_MOD_DT,
+			COMMENT_DEL_DT,
+			COMMENT_LIKES
+		FROM
+			comment
+		WHERE
+			COMMENT_UPPER = #{commentUpper}
+		ORDER BY
+			COMMENT_ID
+			
+				]]>
+	
+	</select>
+	<!-- 댓글 수 추가-->
+	<update id="addCommentCnt">
+		update
+			board
+		set
+			BOARD_COMMENT = BOARD_COMMENT+ 1
+		where
+			BOARD_ID = #{boardId}
+	
+	</update>
+	<!-- 댓글 수 빼기-->
+	<update id="subCommentCnt">
+		update
+			board
+		set
+			BOARD_COMMENT = BOARD_COMMENT- 1
+		where
+			BOARD_ID = #{boardId}
+	
+	</update>
+	
+	<!-- 댓삭제 -->
+	<delete id="commentDelete" parameterType="int">
+        DELETE FROM comment
+        WHERE COMMENT_ID = #{id}
+    </delete>
+	
 
 
 	<!-- <update id="increaseFailCount" parameterType="string"> /* authuser-mapper.xml(increaseFailCount) 

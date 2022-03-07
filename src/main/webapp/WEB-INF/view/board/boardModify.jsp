@@ -10,7 +10,9 @@
 <body>
   
   <h1>게시판 글 작성하기</h1>
-  <form action="<c:url value='/boardModify'/>" method="post">
+ 
+
+  <form action="<c:url value='/page/board/boardModifyRegist'/>" method="post">
     <div class="form-group">
       <table>
         <tr>
