@@ -97,12 +97,11 @@
 			COMMENT_CONTENT,
 			COMMENT_REG_DT,
 			COMMENT_MOD_DT,
-			COMMENT_DEL_DT,
-			COMMENT_LIKES
+			COMMENT_DEL_DT
 			) 
 		VALUES (
 				#{commentUpper}, 0, 0, 0, #{commentUser}, #{commentContent}, now(), 
-				NULL, NULL, '0'
+				NULL, NULL
 		    )
 	</insert>
 	
@@ -122,8 +121,7 @@
 			COMMENT_CONTENT,
 			COMMENT_REG_DT,
 			COMMENT_MOD_DT,
-			COMMENT_DEL_DT,
-			COMMENT_LIKES
+			COMMENT_DEL_DT
 		FROM
 			comment
 		WHERE
