@@ -103,23 +103,9 @@ public class BoardController {
         svc.subCommentCnt(bid);
         return "redirect:/page/board";
     }
-    public void insertBoardReply(BoardComment comment) {
-        if ("".equals(comment.getCommentId())) {
-            if (comment.getCommentParent() != null) {
-                BoardComment replyInfo = sqlSession.selectOne("selectBoard6ReplyParent", comment.getCommentParent());
-                comment.setCommentDepth(replyInfo.getCommentDepth());
-                comment.setCommentOrder(replyInfo.getCommentOrder() + 1);
-                sqlSession.selectOne("updateBoard6ReplyOrder", replyInfo);
-            } else {
-                Integer CommentOrder = sqlSession.selectOne("selectBoard6ReplyMaxOrder", comment.getCommentUpper());
-                comment.setCommentOrder(CommentOrder);
-            }
-           
-            sqlSession.insert("insertBoard6Reply", comment);
-        } else {
-            sqlSession.insert("updateBoard6Reply", comment);
-        }
-    }
+    
+    
+
 
 	
     
