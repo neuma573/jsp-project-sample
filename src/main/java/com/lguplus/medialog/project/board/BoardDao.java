@@ -28,4 +28,5 @@ public interface BoardDao {
 	public void subCommentCnt(int id);
 	
 	public void commentDelete(int id);
+
 }
