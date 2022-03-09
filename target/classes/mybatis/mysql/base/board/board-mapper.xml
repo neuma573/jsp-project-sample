@@ -11,7 +11,7 @@
 				<![CDATA[
 		SELECT
 			BOARD_ID, BOARD_USER, BOARD_NM, BOARD_CONTENT, BOARD_REG_DT,
-			BOARD_MOD_DT, BOARD_DEL_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
+			BOARD_MOD_DT, BOARD_VIEW, BOARD_COMMENT, BOARD_LIKES
 		FROM
 			BOARD
 		ORDER BY
@@ -29,14 +29,13 @@
 			BOARD_CONTENT,
 			BOARD_REG_DT,
 			BOARD_MOD_DT,
-			BOARD_DEL_DT,
 			BOARD_VIEW,
 			BOARD_COMMENT,
 			BOARD_LIKES
 			) 
 		VALUES (
 				#{boardUser}, #{boardNm}, #{boardContent}, now(),
-				NULL, NULL, '0', '0', '0'
+				NULL, '0', '0', '0'
 		    )
 	</insert>
 
@@ -51,7 +50,6 @@
 			BOARD_CONTENT, 
 			BOARD_REG_DT,
 			BOARD_MOD_DT, 
-			BOARD_DEL_DT, 
 			BOARD_VIEW, 
 			BOARD_COMMENT, 
 			BOARD_LIKES
@@ -84,7 +82,7 @@
 			where BOARD_ID = #{id}
 	</update>
 
-	<!-- 글작성 -->
+	<!-- 댓글작성 -->
 	<insert id="commentPost"
 		parameterType="com.lguplus.medialog.project.board.BoardComment">
 		/* board-mapper.xml(uploadBoard) */
@@ -95,15 +93,20 @@
 			COMMENT_ORDER,
 			COMMENT_USER,
 			COMMENT_CONTENT,
-			COMMENT_REG_DT,
-			COMMENT_MOD_DT,
-			COMMENT_DEL_DT
+			COMMENT_REG_DT
 			) 
 		VALUES (
-				#{commentUpper}, 0, 0, 0, #{commentUser}, #{commentContent}, now(), 
-				NULL, NULL
+				#{commentUpper}, 0, 0, 0, #{commentUser}, #{commentContent}, now()
+				
 		    )
 	</insert>
+	
+	<update id=commentDepthUpdate parameterType="com.lguplus.medialog.project.board.BoardComment">
+		UPDATE COMMENT
+			SET COMMENT_PARENT=COMMENT_ID, COMMENT_DEPTH=0, COMMENT_ORDER=COMMENT_ID;
+
+	
+	</update>
 	
 	<!-- 댓글 리스트 출력 -->
 	<select id="openCommentList"
@@ -119,9 +122,7 @@
 			COMMENT_ORDER,
 			COMMENT_USER,
 			COMMENT_CONTENT,
-			COMMENT_REG_DT,
-			COMMENT_MOD_DT,
-			COMMENT_DEL_DT
+			COMMENT_REG_DT
 		FROM
 			comment
 		WHERE
@@ -158,6 +159,8 @@
         DELETE FROM comment
         WHERE COMMENT_ID = #{id}
     </delete>
+    
+    
 	
 
 

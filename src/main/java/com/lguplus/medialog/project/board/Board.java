@@ -11,7 +11,6 @@ public class Board {
 	private String boardNm; // BOARD_NM
 	private String boardContent; // BOARD_CONTENT
 	private String boardRegDt; // BOARD_REG_DT
-	private String boardDelDt; // BOARD_DEL_DT
 	private String boardModDt; // BOARD_MOD_DT
 	private int boardView; // BOARD_VIEW
 	private int boardComment; // BOARD_COMMENT
