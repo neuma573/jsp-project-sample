@@ -37,7 +37,6 @@
               <th width="160">작성일</th>
               <th width="60">조회수</th>
               <th width="60">댓글수</th>
-              <th width="60">추천수</th>
             </tr>
             <c:forEach items="${list}" var="li">
               <tr align="center" height="30">
@@ -50,7 +49,6 @@
                 <td>${li.boardRegDt}</td>
                 <td>${li.boardView}</td>
                 <td>${li.boardComment}</td>
-                <td>${li.boardLikes}</td>
               <tr>
             </c:forEach> <!-- Paging 처리 -->
             <tr>
