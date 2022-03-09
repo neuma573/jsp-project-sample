@@ -8,8 +8,7 @@
     {
       "name": "app.settings.log",
       "type": "com.lguplus.medialog.project.config.consts.AppSettings$Log",
-      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings",
-      "sourceMethod": "public com.lguplus.medialog.project.config.consts.AppSettings.Log getLog() "
+      "sourceType": "com.lguplus.medialog.project.config.consts.AppSettings"
     },
     {
       "name": "app.settings.tomcat.ajp",

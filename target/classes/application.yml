@@ -58,8 +58,10 @@ app.settings:
   xss-excludes:
     - /api/download # xss filter 제외 uri를 list 형식으로 추가
   log:
-    svc-root: /svc/logs/${spring.application.name}/svc
-    tlo-root: /svc/logs/${spring.application.name}/tlo #
+    svc-root: ./svc/logs/${spring.application.name}/svc
+    tlo-root: ./svc/logs/${spring.application.name}/tlo #
+#        svc-root: /svc/logs/${spring.application.name}/svc
+#    tlo-root: /svc/logs/${spring.application.name}/tlo #
     tlo-mdc-key: tloMdcKey
     tlo-prefix: ${spring.application.name}
   sms-authnum-msg: "[인증번호:%s] 사용자본인 인증번호를 입력해주세요"
